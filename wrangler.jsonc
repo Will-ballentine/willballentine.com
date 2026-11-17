@@ -1,0 +1,8 @@
+{
+  // must match the Worker's name in Cloudflare
+  "name": "toads",
+  // which version of Cloudflare's runtime to use; any recent date works
+  "compatibility_date": "2026-11-01",
+  // serve the files in dist/ as a static site
+  "assets": { "directory": "./dist" }
+}
