@@ -122,7 +122,7 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .taped .photo { background: #DCE5DD; display: flex; align-items: center; justify-content: center; color: var(--pencil); font-size: 14px; }
 .taped figcaption { font-family: var(--hand); font-size: 26px; text-align: center; padding-top: 6px; }
 .intro .taped { flex: 1 1 260px; max-width: 320px; --tilt: 2deg; }
-.intro .taped .photo { aspect-ratio: 4 / 5; }
+.intro .taped .photo, .intro .taped img { aspect-ratio: 4 / 5; }
 
 /* table of contents */
 .toc { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
@@ -149,6 +149,7 @@ section { display: flex; flex-direction: column; gap: 20px; }
 /* publications */
 .pubs { margin: 0; padding: 0; list-style: none; }
 .pubs li { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--grid-major); }
+.pubs a { overflow-wrap: anywhere; }
 .pubs .year { font-family: var(--mono); font-size: 14px; color: var(--pencil); width: 48px; flex: none; }
 
 /* toad readings */
