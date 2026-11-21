@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Will Ballentine</title>
+  <meta name="description" content="Will Ballentine, Postdoctoral Scholar, School of Oceanography, University of Washington.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Cover: shown on first visit only -->
+  <div class="cover" id="cover">
+    <div class="spine" aria-hidden="true"></div>
+    <div class="inner">
+      <div class="label">
+        <h1>Science Notebook</h1>
+        <p><span>NAME</span><strong>Will Ballentine</strong></p>
+        <p><span>SUBJECT</span><strong>Form and function in fluids</strong></p>
+      </div>
+      <button type="button" id="open-cover">Open notebook →</button>
+    </div>
+  </div>
+  <script>
+    const cover = document.getElementById('cover');
+    let seen = false;
+    try { seen = localStorage.getItem('seenCover') === '1'; } catch (e) {}
+    if (seen) cover.hidden = true;
+    document.getElementById('open-cover').onclick = () => {
+      try { localStorage.setItem('seenCover', '1'); } catch (e) {}
+      cover.classList.add('opening');
+      setTimeout(() => (cover.hidden = true), 500);
+    };
+  </script>
+
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="/">Will Ballentine</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="toads/">Toad Tank</a></li>
+      <li><a href="#cv">CV</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <div><span>Project</span><strong>Will Ballentine, research notebook</strong></div>
+      <div><span>Date</span><strong>2026-11-21</strong></div>
+      <div><span>Page No.</span><strong>001</strong></div>
+    </div>
+
+    <section class="intro">
+      <div>
+        <h1>Will Ballentine</h1>
+        <p class="role">Postdoctoral Scholar, School of Oceanography, University of Washington (Chan Lab)</p>
+        <p class="lede">I study how organismal form sets ecological function in animals that live in viscous, structured fluid environments: meiofauna in sediments, zooplankton in the water column, and the instruments built to watch them.</p>
+        <div class="note">
+          <button type="button" aria-expanded="false" aria-controls="note-1"
+            onclick="const o = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !o); this.textContent = o ? '+ note' : '- note'; document.getElementById('note-1').hidden = o;">+ note</button>
+          <p id="note-1" hidden>[margin note: a short aside, e.g. how you got from flumes to toads]</p>
+        </div>
+      </div>
+      <figure class="taped">
+        <div class="photo">[portrait photo]</div>
+        <figcaption>[caption, e.g. at Friday Harbor Labs]</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="toc-h">
+      <h2 id="toc-h" class="green" style="font-size: 14px; letter-spacing: .14em; text-transform: uppercase;">Table of Contents</h2>
+      <ol class="toc">
+        <li><a href="#research"><span class="num">01</span><span class="title">Research</span><span class="desc">meiofauna, zooplankton, flow</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 002</span></a></li>
+        <li><a href="#publications"><span class="num">02</span><span class="title">Publications</span><span class="desc">papers and outreach</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 003</span></a></li>
+        <li><a href="#tools"><span class="num">03</span><span class="title">Tools</span><span class="desc">instruments and code</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 004</span></a></li>
+        <li><a href="toads/"><span class="num">04</span><span class="title">Toad Tank</span><span class="desc">live conditions</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 005</span></a></li>
+        <li><a href="#cv"><span class="num">05</span><span class="title">CV</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 006</span></a></li>
+      </ol>
+    </section>
+
+    <section id="research">
+      <div class="section-title"><h2>Research</h2><span class="hand">p. 002</span></div>
+      <div class="entries">
+        <article class="entry">
+          <header><span>ENTRY 01</span><span>[date]</span></header>
+          <h3>Meiofauna ecology</h3>
+          <p class="q">Q: [the question, in your words]</p>
+          <p class="placeholder">[One or two sentences on meiofauna in structured sediments.]</p>
+        </article>
+        <article class="entry">
+          <header><span>ENTRY 02</span><span>[date]</span></header>
+          <h3>Zooplankton hydrodynamics</h3>
+          <p class="q">Q: [the question, in your words]</p>
+          <p class="placeholder">[One or two sentences on larval swimming and feeding in flow.]</p>
+        </article>
+        <article class="entry">
+          <header><span>ENTRY 03</span><span>[date]</span></header>
+          <h3>Tool development</h3>
+          <p class="q">Q: [the question, in your words]</p>
+          <p class="placeholder">[One or two sentences on building instruments to measure the above.]</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="section-title"><h2>Publications</h2><span class="hand">p. 003</span></div>
+      <ol class="pubs">
+        <li><span class="year">2025</span><span><strong>Ballentine W.</strong> [Title]. <em>Frontiers for Young Minds</em>.</span></li>
+        <li><span class="year">2024</span><span><strong>Ballentine W.</strong>, Dorgan K. [Title]. <em>Integrative Organismal Biology</em>.</span></li>
+      </ol>
+    </section>
+
+    <section id="tools">
+      <div class="section-title"><h2>Tools</h2><span class="hand">p. 004</span></div>
+      <div class="figures">
+        <figure class="taped"><div class="photo">[photo]</div><figcaption>Meioflume</figcaption></figure>
+        <figure class="taped"><div class="photo">[photo]</div><figcaption>Tow tank PIV</figcaption></figure>
+        <figure class="taped"><div class="photo">[photo]</div><figcaption>Arduino-based systems</figcaption></figure>
+      </div>
+    </section>
+
+    <footer class="site-footer" id="cv">
+      <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
+      <div class="links">
+        <a href="#">CV (PDF)</a>
+        <a href="#">Email</a>
+        <a href="https://github.com/Will-ballentine">GitHub</a>
+        <span class="muted">Seattle, WA</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

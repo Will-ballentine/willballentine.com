@@ -1,53 +1,99 @@
 <!DOCTYPE html>
-<html lang ="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title> The Toad Tank | Will Ballentine</title>
-        <link rel="stylesheet" href="../css/style.css">        
-    </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Toad Tank | Will Ballentine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="/">Will Ballentine</a>
+    <ul>
+      <li><a href="/#research">Research</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/#tools">Tools</a></li>
+      <li><a href="./" aria-current="page">Toad Tank</a></li>
+      <li><a href="/#cv">CV</a></li>
+    </ul>
+  </nav>
 
-    <body>
-        <header>
-            <h1> The Toad Tank</h1>
-        </header>
+  <main>
+    <div class="page-header">
+      <div><span>Project</span><strong>The Toad Tank</strong></div>
+      <div><span>Date</span><strong>2026-11-21</strong></div>
+      <div><span>Page No.</span><strong>005</strong></div>
+    </div>
 
-        <main>
-            <section id="toads">
-            <h2>My Ladies</h2>
-            <p>
-                Two southern bells
-                (<i>Anaxyrus terrestris</i>).
-            </p>
-            <div class="toad-photos">
-            <figure>
-                <img src="images/big-momma.jpg" alt="Big Momma, a southern Lady">
-                <figcaption>Big Momma </figcaption>
-            </figure>
+    <header style="display: flex; flex-direction: column; gap: 8px;">
+      <h1>The Toad Tank</h1>
+      <p class="hand red" style="font-size: 26px;">live from Seattle, updated every 5 min</p>
+    </header>
 
-            <figure>
-                <img src="images/jessica.jpg" alt="Jessica Gwinn Jr., a southern toad">
-                <figcaption>Jessica Gwinn Jr.</figcaption>
-            </figure>
+    <section id="toads">
+      <h2>My Ladies</h2>
+      <p style="font-size: 18px;">Two southern bells (<i>Anaxyrus terrestris</i>).</p>
+      <div class="figures">
+        <figure class="taped">
+          <img src="images/big-momma.jpg" alt="Big Momma, a southern toad">
+          <figcaption>Big Momma</figcaption>
+        </figure>
+        <figure class="taped">
+          <img src="images/jessica.jpg" alt="Jessica Gwinn Jr., a southern toad">
+          <figcaption>Jessica Gwinn Jr.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-            </div>
-            </section>
+    <section id="enclosure">
+      <h2>The enclosure</h2>
+      <p class="placeholder">[Tank size, substrate, plants, hides, lighting.]</p>
+    </section>
 
-            <section id="enclosure">
-                <h2>The enclosure</h2>
-            </section>
+    <section id="conditions">
+      <div class="section-title" style="justify-content: space-between;">
+        <h2>Live conditions</h2>
+        <span class="mono muted" style="font-size: 13px;">station1 · last reading <span id="last-time">--:--</span></span>
+      </div>
+      <div class="readings">
+        <div><span>Soil temp</span><strong id="soil_temp_c">--.-<small> °C</small></strong><em>DS18B20</em></div>
+        <div><span>Air temp</span><strong id="air_temp_c">--.-<small> °C</small></strong><em>BME280</em></div>
+        <div><span>Humidity</span><strong id="humidity_pct">--<small> %</small></strong><em>BME280</em></div>
+        <div><span>Pressure</span><strong id="pressure_hpa">----<small> hPa</small></strong><em>BME280</em></div>
+        <div><span>Soil moisture</span><strong id="soil_moisture_pct">--<small> %</small></strong><em>capacitive probe</em></div>
+      </div>
+      <button type="button" class="btn" aria-expanded="true" aria-controls="log"
+        onclick="const o = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !o); this.textContent = o ? 'Show log' : 'Hide log'; document.getElementById('log').hidden = o;">Hide log</button>
+      <div class="log-wrap" id="log">
+        <table class="log">
+          <thead><tr><th>Time</th><th>Soil °C</th><th>Air °C</th><th>RH %</th><th>hPa</th><th>Moisture %</th></tr></thead>
+          <tbody id="log-rows">
+            <tr><td>--:--</td><td>--.-</td><td>--.-</td><td>--</td><td>----</td><td>--</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hand red">values shown as dashes until the live feed is connected</p>
+    </section>
 
-            <section id="conditions">
-                <h2>Live conditions</h2>
-            </section>
+    <section id="station">
+      <h2>How the weather station works</h2>
+      <ol class="pipeline">
+        <li><div><strong>ESP32</strong><span>sensors</span></div></li>
+        <li><div><strong>MQTT</strong><span>Mosquitto</span></div></li>
+        <li><div><strong>Telegraf</strong><span>ingest</span></div></li>
+        <li><div><strong>InfluxDB</strong><span>storage</span></div></li>
+        <li><div><strong>This page</strong><span>via Cloudflare</span></div></li>
+      </ol>
+      <p style="max-width: 680px;">An ESP32 reads three sensors every 5 minutes (DS18B20 in the soil, a capacitive moisture probe, and a BME280 for air temperature, humidity and pressure) and publishes the readings over MQTT to a home server.</p>
+    </section>
 
-            <section id="station">
-                <h2>How the weather station works</h2>
-            </section>
-        </main>
-
-        <footer>
-            <p><a href="/">Will Ballentine</a></p>
-        </footer>
-    </body>
+    <footer class="site-footer">
+      <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
+      <a href="/">Back to Table of Contents</a>
+    </footer>
+  </main>
+</body>
 </html>
