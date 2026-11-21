@@ -200,6 +200,7 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .cover .label p { display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
 .cover .label span { font-size: 12px; letter-spacing: .1em; color: var(--pencil); width: 72px; }
 .cover .label strong { font-family: var(--hand); font-size: 32px; font-weight: 500; line-height: 1; }
+.cover .label u.pen { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .cover button { min-height: 48px; padding: 0 22px; border: 1.5px solid rgba(243,247,239,.7); border-radius: 999px; background: transparent; color: var(--paper); font: inherit; font-size: 16px; cursor: pointer; }
 .cover button:hover { color: #fff; border-color: #fff; }
 
