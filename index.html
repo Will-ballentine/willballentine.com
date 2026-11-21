@@ -18,7 +18,7 @@
       <div class="label">
         <h1>Science Notebook</h1>
         <p><span>NAME</span><strong>Will Ballentine</strong></p>
-        <p><span>SUBJECT</span><strong><u class="pen">Life</u> sciences</strong></p>
+        <p><span>SUBJECT</span><strong><b class="written">Life</b> sciences</strong></p>
       </div>
       <button type="button" id="open-cover">Open notebook →</button>
     </div>
@@ -29,9 +29,11 @@
     let seen = false;
     try { seen = sessionStorage.getItem('seenCover') === '1'; } catch (e) {}
     if (seen && !location.search.includes('cover')) cover.hidden = true;
+    else document.documentElement.classList.add('cover-open');
     document.getElementById('open-cover').onclick = () => {
       try { sessionStorage.setItem('seenCover', '1'); } catch (e) {}
       history.replaceState(null, '', location.pathname);
+      document.documentElement.classList.remove('cover-open');
       cover.classList.add('opening');
       setTimeout(() => (cover.hidden = true), 500);
     };
@@ -59,12 +61,8 @@
       <div>
         <h1>Will Ballentine</h1>
         <p class="role">Postdoctoral Scholar, School of Oceanography, University of Washington (Chan Lab)</p>
-        <p class="lede">I study how organismal form sets ecological function in animals that live in viscous, structured fluid environments: meiofauna in sediments, zooplankton in the water column, and the instruments built to watch them.</p>
-        <div class="note">
-          <button type="button" aria-expanded="false" aria-controls="note-1"
-            onclick="const o = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !o); this.textContent = o ? '+ note' : '- note'; document.getElementById('note-1').hidden = o;">+ note</button>
-          <p id="note-1" hidden>[margin note: a short aside, e.g. how you got from flumes to toads]</p>
-        </div>
+        <p class="lede">I am a scientist and a tinkerer. Follow along for updates on my research and side projects.</p>
+        <p class="lede">In my research, I study how organismal form sets ecological function in animals that live in viscous, structured fluid environments: meiofauna in sediments, zooplankton in the water column. I love building new tech that enables new questions in organismal research.</p>
       </div>
       <figure class="taped">
         <img src="assets/headshot.jpg" width="800" height="1000" alt="Will Ballentine smiling in front of cherry blossoms on the UW Quad">
@@ -78,7 +76,7 @@
         <li><a href="#research"><span class="num">01</span><span class="title">Research</span><span class="desc">meiofauna, zooplankton, flow</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 002</span></a></li>
         <li><a href="#tools"><span class="num">02</span><span class="title">Tools</span><span class="desc">instruments and code</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 003</span></a></li>
         <li><a href="https://toads.willballentine.com/"><span class="num">03</span><span class="title">Toad Tank</span><span class="desc">live conditions</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 004</span></a></li>
-        <li><a href="#publications"><span class="num">04</span><span class="title">Publications</span><span class="desc">11 papers, 1 in review</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 005</span></a></li>
+        <li><a href="#publications"><span class="num">04</span><span class="title">Publications</span><span class="desc">11 papers</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 005</span></a></li>
         <li><a href="assets/Will_Ballentine_CV.pdf"><span class="num">05</span><span class="title">CV</span><span class="desc">PDF, updated 2026-11-18</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 006</span></a></li>
       </ol>
     </section>
@@ -118,11 +116,6 @@
 
     <section id="publications">
       <div class="section-title"><h2>Publications</h2><span class="hand">p. 005</span></div>
-      <p class="hand muted">In review</p>
-      <ol class="pubs">
-        <li><span class="year"></span><span><strong>Ballentine W.M.</strong>, Chan K.Y.K. Locomotion, attachment, and flow tolerance of newly settled juvenile <i>Apostichopus californicus</i>. <em>Aquaculture Reports</em>.</span></li>
-      </ol>
-      <p class="hand muted">Published</p>
       <ol class="pubs">
         <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Chan K.Y.K., Koehl M.A.R. Hydrodynamic consequences of horns and spines on the planktotrophic nauplius of the barnacle <i>Lepas anserifera</i>. <em>Journal of Experimental Biology</em>. <a href="https://doi.org/10.1242/jeb.252318">doi:10.1242/jeb.252318</a></span></li>
         <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Dohner S.M., Dorgan K.M., Penko A. Microalgae and meiofauna induce heterogeneous biostabilization in marine sediments. <em>Journal of Geophysical Research: Oceans</em> 131: e2025JC023521. <a href="https://doi.org/10.1029/2025JC023521">doi:10.1029/2025JC023521</a></span></li>
