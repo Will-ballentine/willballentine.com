@@ -25,11 +25,13 @@
   </div>
   <script>
     const cover = document.getElementById('cover');
+    // show once per browsing session, or on demand via ?cover (the "Close notebook" link)
     let seen = false;
-    try { seen = localStorage.getItem('seenCover') === '1'; } catch (e) {}
-    if (seen) cover.hidden = true;
+    try { seen = sessionStorage.getItem('seenCover') === '1'; } catch (e) {}
+    if (seen && !location.search.includes('cover')) cover.hidden = true;
     document.getElementById('open-cover').onclick = () => {
-      try { localStorage.setItem('seenCover', '1'); } catch (e) {}
+      try { sessionStorage.setItem('seenCover', '1'); } catch (e) {}
+      history.replaceState(null, '', location.pathname);
       cover.classList.add('opening');
       setTimeout(() => (cover.hidden = true), 500);
     };
@@ -125,6 +127,7 @@
     <footer class="site-footer" id="cv">
       <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
       <div class="links">
+        <a href="/?cover">Close notebook</a>
         <a href="#">CV (PDF)</a>
         <a href="#">Email</a>
         <a href="https://github.com/Will-ballentine">GitHub</a>
