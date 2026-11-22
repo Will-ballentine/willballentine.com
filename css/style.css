@@ -158,6 +158,8 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .taped.wide .photo, .taped.wide img { aspect-ratio: 4 / 3; object-fit: contain; background: #fff; }
 .taped.wide .photo { background: #DCE5DD; padding: 16px; text-align: center; }
 .taped.wide img { aspect-ratio: auto; }
+.fig-stack { flex: 1 1 380px; max-width: 440px; display: flex; flex-direction: column; gap: 40px; }
+.fig-stack .taped.wide { flex: none; max-width: none; }
 .taped.wide figcaption, .taped.full figcaption { font-size: 23px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .taped.full { flex: 1 1 100%; max-width: 900px; --tilt: -.8deg; }
 .taped.full img { aspect-ratio: auto; }
