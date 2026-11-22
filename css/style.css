@@ -148,6 +148,8 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .entry p.more { font-family: var(--hand); font-size: 22px; color: var(--red); margin-top: auto; }
 
 /* research subpages */
+.subhead { font-size: 21px; padding-top: 16px; border-top: 1.5px dashed rgba(30, 42, 63, .35); margin-top: 12px; display: flex; align-items: baseline; gap: 12px; }
+.subhead span { font-family: var(--mono); font-size: 13px; font-weight: 400; color: var(--pencil); }
 .q-line { font-size: 26px; line-height: 1.2; }
 .study { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 32px 48px; }
 .study > div:first-child { flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px; font-size: 17px; max-width: 640px; }
