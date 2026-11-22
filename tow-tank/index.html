@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The tow tank | Will Ballentine</title>
+  <meta name="description" content="A tow tank for measuring forces and torques on scaled-up models of zooplankton, using a viscous fluid to match the flow tiny larvae experience.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="module" src="/assets/js/model-viewer.min.js"></script>
+  <style>model-viewer { width: 100%; height: 440px; background: #F7FAF5; --poster-color: #F7FAF5; } @media (max-width: 700px) { model-viewer { height: 300px; } }</style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="/">Will Ballentine</a>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <ul id="nav-links">
+      <li><a href="/#research">Research</a></li>
+      <li><a href="/#tools" aria-current="page">Tools</a></li>
+      <li><a href="https://toads.willballentine.com/">Toad Tank</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/assets/Will_Ballentine_CV.pdf">CV</a></li>
+    </ul>
+  </nav>
+  <script>
+    const nav = document.querySelector('.site-nav'), menuBtn = nav.querySelector('.menu-btn');
+    const setMenu = open => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); };
+    menuBtn.onclick = () => setMenu(!nav.classList.contains('open'));
+    nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  </script>
+
+  <main>
+    <div class="page-header">
+      <div><span>Project</span><strong>The tow tank</strong></div>
+      <div><span>Date</span><strong>2026-11-21</strong></div>
+      <div><span>Page No.</span><strong>003-E</strong></div>
+    </div>
+
+    <section class="intro">
+      <div>
+        <p class="hand red" style="font-size: 26px;">Tool 02</p>
+        <h1>The tow tank</h1>
+        <p class="lede">The forces on a swimming larva a fraction of a millimeter long are far too small to measure directly. Instead, we build a larger copy and move it slowly through a fluid thick enough that the flow around it matches the flow around the real animal (dynamic similarity, matching the Reynolds number).</p>
+        <p class="lede">At the University of Washington I built a tow tank for these experiments. It pulls a model through diluted corn syrup at a controlled speed while a sensor records every force and twist on it.</p>
+      </div>
+      <figure class="taped hero">
+        <div class="photo square-ph">[photo of the tow tank, coming soon]</div>
+        <figcaption>The tow tank</figcaption>
+        <p class="credit">School of Oceanography, University of Washington</p>
+      </figure>
+    </section>
+
+    <section id="design">
+      <div class="section-title"><h2>How it works</h2><span class="hand">p. 003-F</span></div>
+      <div class="study">
+        <div>
+          <p>The tank is clear acrylic, about 1.5 m long, 0.5 m wide, and 0.5 m deep, on an aluminum stand 1.2 m tall. Above it, a wheeled cart runs along a 1020 V-slot aluminum rail, pulled by a belt driven by a NEMA 23 stepper motor and a BlackBox X32 driver.</p>
+          <p>The cart carries an ATI Nano17, a six-axis force/torque sensor about the size of a coin. A rod connects it to the model below, so it records drag, lift, and side force along with the pitch, roll, and yaw torques. An ATI interface power supply box powers the sensor and conditions its signals, and a National Instruments data acquisition board records them.</p>
+        </div>
+        <figure class="taped wide">
+          <img src="images/towtank-models.jpg" width="934" height="906" alt="Diagram of the tow tank with a cart and force transducer pulling a nauplius model, above outlines of five model versions seen from three angles">
+          <figcaption>Towing a nauplius model</figcaption>
+          <p class="credit">Ballentine et al. 2026, <i>Journal of Experimental Biology</i></p>
+        </figure>
+      </div>
+      <figure class="taped full">
+        <model-viewer src="/assets/models/tow-tank.glb" poster="images/tow-tank-poster.jpg" alt="Interactive 3D model of the tow tank and its aluminum stand" camera-controls touch-action="pan-y" auto-rotate rotation-per-second="15deg" camera-orbit="35deg 72deg 105%" environment-image="neutral" shadow-intensity="0.6" exposure="1.1" ar></model-viewer>
+        <figcaption>Explore the tow tank in 3D</figcaption>
+        <p class="credit">Tank and stand only; the towing rail, cart, and sensor are not modeled. Drag to rotate, scroll or pinch to zoom.</p>
+      </figure>
+    </section>
+
+    <section id="uses">
+      <div class="section-title"><h2>What it's used for</h2><span class="hand">p. 003-G</span></div>
+      <p style="max-width: 640px; font-size: 17px;">The tow tank collected all of the force and torque data for our study of horns and tail spines on barnacle nauplii (see <a href="/zooplankton/">Zooplankton</a>), and has supported three undergraduate research projects.</p>
+    </section>
+
+    <section id="papers">
+      <div class="section-title"><h2>Read more</h2><span class="hand">the paper behind this page</span></div>
+      <ol class="pubs">
+        <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Chan K.Y.K., Wong E., Wong J.Y., Koehl M.A.R. Hydrodynamic effects of spines on zooplankton: how horns and tails alter flow and forces on barnacle nauplii. <em>Journal of Experimental Biology</em> 229: jeb252318. <a href="https://doi.org/10.1242/jeb.252318">doi:10.1242/jeb.252318</a></span></li>
+      </ol>
+    </section>
+
+    <footer class="site-footer">
+      <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
+      <div class="links">
+        <a href="/#tools">Back to Tools</a>
+        <a href="/">Table of Contents</a>
+        <a href="/?cover">Close notebook</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
