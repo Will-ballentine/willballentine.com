@@ -152,10 +152,11 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .study { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 32px 48px; }
 .study > div:first-child { flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px; font-size: 17px; max-width: 640px; }
 .study > .figures { flex: 1 1 100%; }
-.taped.wide { flex: 1 1 300px; max-width: 420px; --tilt: 1deg; }
+.taped.wide { flex: 1 1 380px; max-width: 440px; --tilt: 1deg; }
 .taped.wide .photo, .taped.wide img { aspect-ratio: 4 / 3; object-fit: contain; background: #fff; }
 .taped.wide .photo { background: #DCE5DD; padding: 16px; text-align: center; }
 .taped.wide img { aspect-ratio: auto; }
+.taped.wide figcaption, .taped.full figcaption { font-size: 23px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .taped.full { flex: 1 1 100%; max-width: 900px; --tilt: -.8deg; }
 .taped.full img { aspect-ratio: auto; }
 .taped.full:nth-child(even) { --tilt: .8deg; }
