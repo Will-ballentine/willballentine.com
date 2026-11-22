@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Meioflume | Will Ballentine</title>
-  <meta name="description" content="The Meioflume: a small, low-cost flow chamber filled with transparent sediment for watching meiofauna move between sand grains.">
+  <title>Tool development: Instruments for small animals | Will Ballentine</title>
+  <meta name="description" content="Instruments Will Ballentine has built to study small marine animals: the Meioflume, a transparent flow chamber for meiofauna, and a tow tank for measuring forces on scaled-up zooplankton models.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
@@ -20,7 +20,7 @@
     </button>
     <ul id="nav-links">
       <li><a href="/#research">Research</a></li>
-      <li><a href="/#tools" aria-current="page">Tools</a></li>
+      <li><a href="/tools/" aria-current="page">Tools</a></li>
       <li><a href="https://toads.willballentine.com/">Toad Tank</a></li>
       <li><a href="/#publications">Publications</a></li>
       <li><a href="/assets/Will_Ballentine_CV.pdf">CV</a></li>
@@ -35,17 +35,16 @@
 
   <main>
     <div class="page-header">
-      <div><span>Project</span><strong>The Meioflume</strong></div>
-      <div><span>Date</span><strong>2026-11-21</strong></div>
+      <div><span>Project</span><strong>Tool development</strong></div>
+      <div><span>Date</span><strong>2026-11-22</strong></div>
       <div><span>Page No.</span><strong>003-A</strong></div>
     </div>
 
     <section class="intro">
       <div>
-        <p class="hand red" style="font-size: 26px;">Tool 01</p>
-        <h1>The Meioflume</h1>
-        <p class="lede">Meiofauna live inside sand, where water seeps through the spaces between grains. Sand is opaque, so their behavior there has rarely been watched directly.</p>
-        <p class="lede">The Meioflume is a small flow chamber, packed with sand that turns transparent underwater, that sits on a microscope stage. It gives a see-through patch of seafloor with controlled porewater flow.</p>
+        <p class="hand red" style="font-size: 26px;">Research entry 03</p>
+        <h1>Tool development: Instruments for small animals</h1>
+        <p class="lede">Many questions about small marine animals go unanswered because nobody can watch or measure them in the right conditions. I build instruments to close that gap, from a palm-sized chamber of transparent sand to a 1.5 m tank of syrup.</p>
       </div>
       <figure class="taped hero">
         <img class="square" src="/assets/meioflume-render.jpg" width="800" height="800" alt="3D render of the Meioflume: a clear acrylic block with four steel screws on top and a white tube coupling at each end">
@@ -54,8 +53,15 @@
       </figure>
     </section>
 
-    <section id="design">
-      <div class="section-title"><h2>How it works</h2><span class="hand">p. 003-B</span></div>
+    <ol class="toc">
+      <li><a href="#meioflume"><span class="num">01</span><span class="title">The Meioflume</span><span class="desc">watching animals inside sand</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 003-B</span></a></li>
+      <li><a href="#tow-tank"><span class="num">02</span><span class="title">The tow tank</span><span class="desc">measuring forces on larvae</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 003-C</span></a></li>
+    </ol>
+
+    <section id="meioflume">
+      <div class="section-title"><h2>The Meioflume</h2><span class="hand">p. 003-B</span></div>
+      <p class="hand green q-line">Q: How do you watch an animal that lives inside sand?</p>
+      <p style="max-width: 640px; font-size: 17px;">Meiofauna live inside sand, where water seeps through the spaces between grains. Sand is opaque, so their behavior there has rarely been watched directly. The Meioflume is a small flow chamber, packed with sand that turns transparent underwater, that sits on a microscope stage. It gives a see-through patch of seafloor with controlled porewater flow.</p>
       <div class="study">
         <div>
           <p>The chamber is three pieces of clear acrylic, milled on a CNC router and bolted together, 7.6 cm long and 2.5 cm wide. Water enters at one end, spreads out through a flow-widening chamber, and crosses a working area 28.6 mm long, 10.2 mm wide, and 1 mm deep. Mesh screens (100 µm) at each end keep animals and grains from washing out.</p>
@@ -78,10 +84,7 @@
         <figcaption>On the microscope stage</figcaption>
         <p class="credit">Ballentine &amp; Dorgan 2024, <i>Integrative Organismal Biology</i></p>
       </figure>
-    </section>
-
-    <section id="observations">
-      <div class="section-title"><h2>What it shows</h2><span class="hand">p. 003-C</span></div>
+      <h3 class="subhead">What it shows</h3>
       <div class="study">
         <div>
           <p>Animals placed in the Meioflume can be filmed moving through the cryolite before and after flow starts. In early trials, a copepod began burrowing almost as soon as water started moving, a protodrilid worm turned and headed downward, and a flatworm paused briefly, then carried on.</p>
@@ -93,16 +96,48 @@
         <figcaption>A worm, a copepod, a flatworm</figcaption>
         <p class="credit">Ballentine &amp; Dorgan 2024, <i>Integrative Organismal Biology</i></p>
       </figure>
-    </section>
-
-    <section id="build">
-      <div class="section-title"><h2>Build your own</h2><span class="hand">p. 003-D</span></div>
+      <h3 class="subhead">Build your own</h3>
       <p style="max-width: 640px; font-size: 17px;">The CAD model and parts list are free on <a href="https://github.com/Will-Ballentine/Meioflume_Designs">GitHub</a>. Parts: 1/4" clear acrylic (body), 1/16" clear acrylic (lid), two quick-turn tube couplings, two three-way stopcock valves, four 6-32 stainless socket head screws, and high-vacuum grease.</p>
     </section>
 
+    <section id="tow-tank">
+      <div class="section-title"><h2>The tow tank</h2><span class="hand">p. 003-C</span></div>
+      <p class="hand green q-line">Q: How do you measure forces on an animal smaller than a grain of rice?</p>
+      <div class="study">
+        <div>
+          <p>The forces on a swimming larva a fraction of a millimeter long are far too small to measure directly. Instead, we build a larger copy and move it slowly through a fluid thick enough that the flow around it matches the flow around the real animal (dynamic similarity, matching the Reynolds number).</p>
+          <p>At the University of Washington I built a tow tank for these experiments. It pulls a model through diluted corn syrup at a controlled speed while a sensor records every force and twist on it.</p>
+        </div>
+        <figure class="taped wide">
+          <div class="photo">[photo of the tow tank, coming soon]</div>
+          <figcaption>The tow tank</figcaption>
+          <p class="credit">School of Oceanography, University of Washington</p>
+        </figure>
+      </div>
+      <div class="study">
+        <div>
+          <p>The tank is clear acrylic, about 1.5 m long, 0.5 m wide, and 0.5 m deep, on an aluminum stand 1.2 m tall. Above it, a wheeled cart runs along a 1020 V-slot aluminum rail, pulled by a belt driven by a NEMA 23 stepper motor and a BlackBox X32 driver.</p>
+          <p>The cart carries an ATI Nano17, a six-axis force/torque sensor about the size of a coin. A rod connects it to the model below, so it records drag, lift, and side force along with the pitch, roll, and yaw torques. An ATI interface power supply box powers the sensor and conditions its signals, and a National Instruments data acquisition board records them.</p>
+        </div>
+        <figure class="taped wide">
+          <img src="images/towtank-models.jpg" width="934" height="906" alt="Diagram of the tow tank with a cart and force transducer pulling a nauplius model, above outlines of five model versions seen from three angles">
+          <figcaption>Towing a nauplius model</figcaption>
+          <p class="credit">Ballentine et al. 2026, <i>Journal of Experimental Biology</i></p>
+        </figure>
+      </div>
+      <figure class="taped full">
+        <model-viewer src="/assets/models/tow-tank.glb" poster="images/tow-tank-poster.jpg" alt="Interactive 3D model of the tow tank and its aluminum stand" camera-controls touch-action="pan-y" auto-rotate rotation-per-second="15deg" camera-orbit="35deg 72deg 105%" environment-image="neutral" shadow-intensity="0.6" exposure="1.1" ar></model-viewer>
+        <figcaption>Explore the tow tank in 3D</figcaption>
+        <p class="credit">Tank and stand only; the towing rail, cart, and sensor are not modeled. Drag to rotate, scroll or pinch to zoom.</p>
+      </figure>
+      <h3 class="subhead">What it's used for</h3>
+      <p style="max-width: 640px; font-size: 17px;">The tow tank collected all of the force and torque data for our study of horns and tail spines on barnacle nauplii (see <a href="/zooplankton/">Zooplankton</a>), and has supported three undergraduate research projects.</p>
+    </section>
+
     <section id="papers">
-      <div class="section-title"><h2>Read more</h2><span class="hand">the paper behind this page</span></div>
+      <div class="section-title"><h2>Read more</h2><span class="hand">the papers behind this page</span></div>
       <ol class="pubs">
+        <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Chan K.Y.K., Wong E., Wong J.Y., Koehl M.A.R. Hydrodynamic effects of spines on zooplankton: how horns and tails alter flow and forces on barnacle nauplii. <em>Journal of Experimental Biology</em> 229: jeb252318. <a href="https://doi.org/10.1242/jeb.252318">doi:10.1242/jeb.252318</a></span></li>
         <li><span class="year">2024</span><span><strong>Ballentine W.M.</strong>, Dorgan K.M. The Meioflume: a new system for observing the interstitial behavior of meiofauna. <em>Integrative Organismal Biology</em> 6(1): obae016. <a href="https://doi.org/10.1093/iob/obae016">doi:10.1093/iob/obae016</a></span></li>
       </ol>
     </section>
@@ -110,7 +145,7 @@
     <footer class="site-footer">
       <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
       <div class="links">
-        <a href="/#tools">Back to Tools</a>
+        <a href="/#research">Back to Research</a>
         <a href="/">Table of Contents</a>
         <a href="/?cover">Close notebook</a>
       </div>
