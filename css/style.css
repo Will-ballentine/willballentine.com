@@ -114,7 +114,7 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .taped:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(30, 42, 63, .18); }
 .taped:nth-child(even) { --tilt: 1.5deg; }
 .taped img, .taped .photo { aspect-ratio: 1 / 1; width: 100%; object-fit: cover; }
-.taped .photo { background: #DCE5DD; display: flex; align-items: center; justify-content: center; color: var(--pencil); font-size: 14px; }
+.taped .photo { background: #DCE5DD; display: flex; align-items: center; justify-content: center; color: var(--pencil); font-size: 14px; padding: 12px; text-align: center; }
 .taped figcaption { font-family: var(--hand); font-size: 26px; text-align: center; padding-top: 6px; }
 .intro .taped { flex: 1 1 260px; max-width: 320px; --tilt: 2deg; }
 .intro .taped .photo, .intro .taped img { aspect-ratio: 4 / 5; }
@@ -140,6 +140,22 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .entry h3 { font-size: 21px; }
 .entry .q { font-family: var(--hand); font-size: 23px; line-height: 1.2; color: var(--cover); }
 .entry p:last-child { font-size: 15px; }
+
+.entry.linked { position: relative; transition: transform .2s ease, box-shadow .2s ease; }
+.entry.linked:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(30, 42, 63, .14); }
+.entry.linked h3 a { text-decoration: none; }
+.entry.linked h3 a::after { content: ""; position: absolute; inset: 0; } /* whole card clickable */
+.entry p.more { font-family: var(--hand); font-size: 22px; color: var(--red); margin-top: auto; }
+
+/* research subpages */
+.q-line { font-size: 26px; line-height: 1.2; }
+.study { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 32px 48px; }
+.study > div:first-child { flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px; font-size: 17px; max-width: 640px; }
+.study > .figures { flex: 1 1 100%; }
+.taped.wide { flex: 1 1 300px; max-width: 420px; --tilt: 1deg; }
+.taped.wide .photo, .taped.wide img { aspect-ratio: 4 / 3; object-fit: contain; background: #fff; }
+.taped.wide .photo { background: #DCE5DD; padding: 16px; text-align: center; }
+.taped .credit { font-size: 12px; color: var(--pencil); text-align: center; padding-bottom: 2px; }
 
 /* publications */
 .pubs { margin: 0; padding: 0; list-style: none; }
