@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meiofauna: Life among the sand grains | Will Ballentine</title>
+  <meta name="description" content="Will Ballentine's research on meiofauna, the tiny animals that live between sand grains: how they move, how many kinds there are, and what they do for the seafloor.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="/">Will Ballentine</a>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <ul id="nav-links">
+      <li><a href="/#research" aria-current="page">Research</a></li>
+      <li><a href="/#tools">Tools</a></li>
+      <li><a href="https://toads.willballentine.com/">Toad Tank</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/assets/Will_Ballentine_CV.pdf">CV</a></li>
+    </ul>
+  </nav>
+  <script>
+    const nav = document.querySelector('.site-nav'), menuBtn = nav.querySelector('.menu-btn');
+    const setMenu = open => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); };
+    menuBtn.onclick = () => setMenu(!nav.classList.contains('open'));
+    nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  </script>
+
+  <main>
+    <div class="page-header">
+      <div><span>Project</span><strong>Meiofauna</strong></div>
+      <div><span>Date</span><strong>2026-11-21</strong></div>
+      <div><span>Page No.</span><strong>002-A</strong></div>
+    </div>
+
+    <section class="intro">
+      <div>
+        <p class="hand red" style="font-size: 26px;">Research entry 01</p>
+        <h1>Meiofauna: Life among the sand grains</h1>
+        <p class="lede">Meiofauna are animals smaller than a millimeter that live in the spaces between sand grains. Some beaches hold thousands of them in a teaspoon of sand. To a meiofaunal worm, each grain is a boulder, and the seafloor is a dark, shifting maze full of water.</p>
+        <p class="lede">Nearly every major animal group has members living down here: worms, crustaceans, snails, tardigrades, and groups found nowhere else, such as gastrotrichs and kinorhynchs ("mud dragons"). I study how their bodies let them live in sand, how many kinds there are, and what they do to the sediment around them.</p>
+      </div>
+      <figure class="taped hero">
+        <img class="square" src="images/meiofauna-montage.jpg" width="1000" height="1000" alt="Eight microscope images of meiofauna separated by drawn sand grains: a tardigrade, a kinorhynch, a nematode, a gastrotrich, an aplacophoran mollusk, an acoel worm, a nemertean, and a spionid worm">
+        <figcaption>Meiofaunal diversity</figcaption>
+        <p class="credit">Ballentine et al. 2025, <i>Frontiers for Young Minds</i></p>
+      </figure>
+    </section>
+
+    <ol class="toc">
+      <li><a href="#organismal"><span class="num">01</span><span class="title">Organismal work</span><span class="desc">moving through a maze</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 002-B</span></a></li>
+      <li><a href="#diversity"><span class="num">02</span><span class="title">Diversity work</span><span class="desc">who is down there</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 002-C</span></a></li>
+      <li><a href="#ecology"><span class="num">03</span><span class="title">Ecology work</span><span class="desc">what they do to sand</span><span class="dots" aria-hidden="true"></span><span class="pg">p. 002-D</span></a></li>
+    </ol>
+
+    <section id="organismal">
+      <div class="section-title"><h2>Organismal work</h2><span class="hand">p. 002-B</span></div>
+      <p class="hand green q-line">Q: How do you find your way through a maze you can't see?</p>
+      <div class="study">
+        <div>
+          <p>Sand is opaque and dark, so meiofauna cannot navigate by sight. Many interstitial worms carry a pair of long, flexible feelers on their heads called palps. Watching four species from three worm families crawl through clear sand, I found that the palps probe ahead nearly the entire time a worm is moving. At a fork, the worm sends its palps down each branch, then follows one. The palps travel much farther than the head does, so the worm surveys the pores around it before committing its body to a path.</p>
+          <p>This points to palps working as touch sensors for mapping pore space and avoiding dead ends. It also raises a question: how do the many interstitial animals with no palps at all find their way?</p>
+        </div>
+        <figure class="taped wide">
+          <img src="images/palp-species.jpg" width="1200" height="1200" alt="Four interstitial worms photographed on black backgrounds, each with a pair of long palps at the head end and a 1 mm scale bar">
+          <figcaption>Four palp-bearing annelids</figcaption>
+          <p class="credit">Two protodrilids, <i>Pharyngocirrus eroticus</i>, and <i>Protodorvillea recuperata</i>. Ballentine &amp; Dorgan 2023, <i>Biological Bulletin</i></p>
+        </figure>
+      </div>
+    </section>
+
+    <section id="diversity">
+      <div class="section-title"><h2>Diversity work</h2><span class="hand">p. 002-C</span></div>
+      <p class="hand green q-line">Q: How many kinds of animals live in a handful of sand?</p>
+      <div class="study">
+        <div>
+          <p>Tens of thousands of meiofauna species have been described, and likely as many again have not. Many are hard to tell apart under a microscope, because unrelated animals that live between grains tend to converge on the same long, thin, sticky body plan. Some look-alike "species" from opposite sides of the world turn out to differ genetically more than humans and chimpanzees do.</p>
+          <p>In 2019 I joined an international workshop in the Azores, a remote and little-studied archipelago in the middle of the Atlantic. Experts identifying animals by eye recorded about 180 kinds. Reading the DNA in the same sediments turned up 480 distinct genetic types spanning 14 animal phyla, led by copepods, worms, and nematodes. Medium-grained sand held more kinds than coarse sand. The DNA approach was especially good at finding easily overlooked groups such as rotifers, though it missed some animals that the microscope caught, so the two methods work best together.</p>
+        </div>
+        <figure class="taped wide">
+          <img src="images/atlantic-azores.jpg" width="1260" height="808" alt="Map of the North Atlantic with a red dot marking the Azores, roughly midway between North America and Europe">
+          <figcaption>The Azores</figcaption>
+          <p class="credit">Map data: Natural Earth (public domain)</p>
+        </figure>
+      </div>
+      <div class="figures">
+        <figure class="taped full">
+          <img src="images/sao-miguel-sites.jpg" width="1400" height="616" alt="Satellite image of São Miguel island with eleven labeled sampling sites around its coast">
+          <figcaption>Sampling sites on São Miguel</figcaption>
+          <p class="credit">Colors show sand type (yellow fine, orange medium, red coarse); circles are intertidal, triangles subtidal. Leasi et al. 2026, <i>Marine Biodiversity</i></p>
+        </figure>
+      </div>
+    </section>
+
+    <section id="ecology">
+      <div class="section-title"><h2>Ecology work</h2><span class="hand">p. 002-D</span></div>
+      <p class="hand green q-line">Q: Do tiny animals change how the seafloor holds together?</p>
+      <div class="study">
+        <div>
+          <p>Diatoms (microscopic algae) living on the seafloor ooze a sticky glue that binds the top layer of sand into a thin biomat. Biomats take stronger currents to erode, which matters for predicting how sand moves in coastal waters that ships navigate and scientists map. Meiofauna graze on both the diatoms and their glue.</p>
+          <p>Working with the U.S. Naval Research Laboratory, we grew diatom biomats on sand in small cores with no, low, or high numbers of meiofauna, then eroded each core in a flow tunnel while filming from above.</p>
+        </div>
+        <figure class="taped wide">
+          <img src="images/biomat-setup.jpg" width="1400" height="876" alt="Diagram of the flow tunnel with a camera above a sediment core and a current meter upstream, with photos of cores in their culture tanks, a core with a brown diatom mat on top, and the camera's view of a core in the tunnel">
+          <figcaption>Growing and eroding biomats</figcaption>
+          <p class="credit">Ballentine et al. 2026, <i>JGR: Oceans</i></p>
+        </figure>
+      </div>
+      <div class="study">
+        <div>
+          <p>Biomats never washed away all at once. They broke off in chunks across a wide range of current strengths, and some patches held on long after their neighbors failed. Older mats were tougher (two-week-old mats lost 56% less than one-week-old mats), and cores with many meiofauna lost 22% less mat than cores with none. The grazers, together with the diatoms, made the sand more stable.</p>
+          <p>We also tested xanthan gum, a thickener labs often use as a stand-in for natural glue. It slowed erosion, but sand still left grain by grain rather than in chunks, so it does not behave like a living biomat. Better predictions of how coasts erode may need to account for this patchy, living layer.</p>
+          <p>Meiofauna matter beyond sand stability. They recycle nutrients by eating dead material, they feed young fish and crabs, and their communities shift with pollution (after an oil spill in the Gulf of Mexico, meiofauna diversity dropped and took about a year to recover), which makes them useful indicators of seafloor health.</p>
+        </div>
+        <figure class="taped wide">
+          <img src="images/biomat-erosion.jpg" width="1400" height="607" alt="Two heat maps of circular sediment cores colored by the current strength at which each spot eroded, showing irregular patches rather than uniform erosion; the right core, older and with many meiofauna, has more area that never eroded">
+          <figcaption>Patches fail at different currents</figcaption>
+          <p class="credit">Ballentine et al. 2026, <i>JGR: Oceans</i></p>
+        </figure>
+      </div>
+    </section>
+
+    <section id="papers">
+      <div class="section-title"><h2>Read more</h2><span class="hand">the papers behind this page</span></div>
+      <ol class="pubs">
+        <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Dohner S.M., Dorgan K.M., Penko A. Microalgae and meiofauna induce heterogeneous biostabilization in marine sediments. <em>Journal of Geophysical Research: Oceans</em> 131: e2025JC023521. <a href="https://doi.org/10.1029/2025JC023521">doi:10.1029/2025JC023521</a></span></li>
+        <li><span class="year">2026</span><span>Leasi F., et al. (incl. <strong>Ballentine W.M.</strong>). High meiofaunal diversity in the Azores revealed through DNA metabarcoding. <em>Marine Biodiversity</em> 56(1): 6. <a href="https://doi.org/10.1007/s12526-025-01615-z">doi:10.1007/s12526-025-01615-z</a></span></li>
+        <li><span class="year">2025</span><span><strong>Ballentine W.M.</strong>, Roberts N.G., Yap-Chiongco M.K., Halanych K.M., Kocot K.M., Dorgan K.M. Life among the sand grains. <em>Frontiers for Young Minds</em> 13: 1472123. <a href="https://doi.org/10.3389/frym.2025.1472123">doi:10.3389/frym.2025.1472123</a> <span class="hand red">written for kids</span></span></li>
+        <li><span class="year">2023</span><span><strong>Ballentine W.M.</strong>, Dorgan K.M. Locomotory palp function in interstitial annelids. <em>Biological Bulletin</em> 244(1): 51-62. <a href="https://doi.org/10.1086/724580">doi:10.1086/724580</a></span></li>
+        <li><span class="year">2021</span><span>Jörger K.M., et al. (incl. <strong>Ballentine W.M.</strong>). Meiozores 2019: Exploring the marine meiofauna of the Azores. <em>Açoreana</em> 11: 17-41.</span></li>
+      </ol>
+    </section>
+
+    <footer class="site-footer">
+      <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
+      <div class="links">
+        <a href="/#research">Back to Research</a>
+        <a href="/">Table of Contents</a>
+        <a href="/?cover">Close notebook</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
