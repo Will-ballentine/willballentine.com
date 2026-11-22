@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zooplankton: Small bodies in thick water | Will Ballentine</title>
+  <meta name="description" content="Will Ballentine's research on zooplankton hydrodynamics: how spines on barnacle larvae change the forces and flows that shape swimming and feeding.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="/">Will Ballentine</a>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <ul id="nav-links">
+      <li><a href="/#research" aria-current="page">Research</a></li>
+      <li><a href="/#tools">Tools</a></li>
+      <li><a href="https://toads.willballentine.com/">Toad Tank</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/assets/Will_Ballentine_CV.pdf">CV</a></li>
+    </ul>
+  </nav>
+  <script>
+    const nav = document.querySelector('.site-nav'), menuBtn = nav.querySelector('.menu-btn');
+    const setMenu = open => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); };
+    menuBtn.onclick = () => setMenu(!nav.classList.contains('open'));
+    nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  </script>
+
+  <main>
+    <div class="page-header">
+      <div><span>Project</span><strong>Zooplankton</strong></div>
+      <div><span>Date</span><strong>2026-11-21</strong></div>
+      <div><span>Page No.</span><strong>002-E</strong></div>
+    </div>
+
+    <section class="intro">
+      <div>
+        <p class="hand red" style="font-size: 26px;">Research entry 02</p>
+        <h1>Zooplankton: Small bodies in thick water</h1>
+        <p class="lede">Zooplankton are animals that drift in the water column, from lifelong drifters like copepods to the larvae of barnacles, crabs, and sea urchins. They link the ocean's microscopic algae to fish and whales, and many are smaller than a millimeter.</p>
+        <p class="lede">At that size, water behaves differently. Viscosity (the stickiness of a fluid) matters as much as momentum, so a larva cannot coast the way a fish does, and every spine or bristle changes how water moves around it. I study how the shape of these animals sets how well they swim and feed.</p>
+      </div>
+      <figure class="taped hero">
+        <img class="square" src="images/nauplius.jpg" width="526" height="526" alt="Micrograph of a barnacle nauplius larva with two long frontal horns, feathery appendages, and a long tail spine">
+        <figcaption>A barnacle nauplius</figcaption>
+        <p class="credit"><i>Lepas anserifera</i>, scale bar 200 µm. Ballentine et al. 2026, <i>Journal of Experimental Biology</i></p>
+      </figure>
+    </section>
+
+    <section id="spines">
+      <div class="section-title"><h2>Horns and tails</h2><span class="hand">p. 002-F</span></div>
+      <p class="hand green q-line">Q: Why do some larvae carry such long spines?</p>
+      <div class="study">
+        <div>
+          <p>Many zooplankton have long spines, and the larvae (nauplii) of the gooseneck barnacle <i>Lepas anserifera</i> have some of the longest relative to their bodies: two frontal horns and a forked tail spine. Spines can make a larva too big for small predators to swallow, but their effects on swimming and feeding were largely unknown.</p>
+          <p>Live nauplii are too small and delicate to measure forces on directly, so we built 3D-printed models a few centimeters long and towed them through corn syrup nearly 5,000 times more viscous than water. Matching size, speed, and viscosity this way recreates the flow a real nauplius experiences. We tested five versions of the model (intact, horns only, tail only, no spines, and one horn missing), measured the forces and torques on each, and mapped the flow around them with lasers and tracer particles (particle image velocimetry). This was a collaboration between Karen Chan's lab at the University of Washington and Mimi Koehl's lab at UC Berkeley.</p>
+        </div>
+        <figure class="taped wide">
+          <img src="images/towtank-models.jpg" width="934" height="906" alt="Diagram of a 2.1 m tow tank with a cart and force transducer pulling a nauplius model, above outlines of the five model versions seen from three angles">
+          <figcaption>Tow tank and five models</figcaption>
+          <p class="credit">Ballentine et al. 2026, <i>Journal of Experimental Biology</i></p>
+        </figure>
+      </div>
+      <div class="study">
+        <div>
+          <p>Spines are a trade-off. Horns and tail both increase drag, making each stroke of the swimming appendages less effective. But they also act as stabilizers, resisting the nose-up and nose-down rocking caused by those beating appendages. A model missing one horn was pushed sideways and turned with every stroke, so a nauplius that loses a horn to a predator should veer off course.</p>
+          <p>Spines also slow the water passing through the feeding zone. The intact model let through about a quarter as much water as the spineless one, giving a nauplius more time to strain food from each parcel of water. Long spines appear to favor feeding over fast swimming, a trade-off that may explain why feeding larvae tend to have longer spines than non-feeding ones.</p>
+        </div>
+        <div class="fig-stack">
+          <figure class="taped wide">
+            <img src="images/piv-flow.jpg" width="1400" height="1355" alt="Color maps of water velocity around a live nauplius, an intact model, and a spineless model during the power and recovery strokes, with a diagram marking the food capture zone">
+            <figcaption>Flow around nauplii and models</figcaption>
+            <p class="credit">Ballentine et al. 2026, <i>Journal of Experimental Biology</i></p>
+          </figure>
+          <figure class="taped wide">
+            <img src="images/feeding-flux.jpg" width="957" height="771" alt="Plot of water flux through the feeding zone for four model versions, lowest for the intact model and highest for the spineless model">
+            <figcaption>Spines slow the feeding current</figcaption>
+            <p class="credit">Ballentine et al. 2026, <i>Journal of Experimental Biology</i></p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="papers">
+      <div class="section-title"><h2>Read more</h2><span class="hand">the paper behind this page</span></div>
+      <ol class="pubs">
+        <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Chan K.Y.K., Wong E., Wong J.Y., Koehl M.A.R. Hydrodynamic effects of spines on zooplankton: how horns and tails alter flow and forces on barnacle nauplii. <em>Journal of Experimental Biology</em> 229: jeb252318. <a href="https://doi.org/10.1242/jeb.252318">doi:10.1242/jeb.252318</a></span></li>
+      </ol>
+    </section>
+
+    <footer class="site-footer">
+      <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
+      <div class="links">
+        <a href="/#research">Back to Research</a>
+        <a href="/">Table of Contents</a>
+        <a href="/?cover">Close notebook</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
