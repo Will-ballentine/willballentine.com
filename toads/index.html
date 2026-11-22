@@ -12,7 +12,10 @@
 <body>
   <nav class="site-nav" aria-label="Main">
     <a class="brand" href="https://willballentine.com/">Will Ballentine</a>
-    <ul>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
+    </button>
+    <ul id="nav-links">
       <li><a href="https://willballentine.com/#research">Research</a></li>
       <li><a href="https://willballentine.com/#tools">Tools</a></li>
       <li><a href="./" aria-current="page">Toad Tank</a></li>
@@ -20,6 +23,12 @@
       <li><a href="https://willballentine.com/assets/Will_Ballentine_CV.pdf">CV</a></li>
     </ul>
   </nav>
+  <script>
+    const nav = document.querySelector('.site-nav'), menuBtn = nav.querySelector('.menu-btn');
+    const setMenu = open => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); };
+    menuBtn.onclick = () => setMenu(!nav.classList.contains('open'));
+    nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  </script>
 
   <main>
     <div class="page-header">

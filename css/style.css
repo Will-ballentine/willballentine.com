@@ -4,6 +4,8 @@
   --paper: #F3F7EF;
   --grid-minor: #DCEADA;
   --grid-major: #BCD6B9;
+  --paper-minor: rgba(120, 170, 115, .12);  /* background grid only */
+  --paper-major: rgba(120, 170, 115, .24);
   --ink: #1E2A3F;
   --pencil: #4F5B56;
   --red: #C23B32;
@@ -22,10 +24,10 @@ body {
   line-height: 1.6;
   background-color: var(--paper);
   background-image:
-    linear-gradient(var(--grid-major) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
-    linear-gradient(var(--grid-minor) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+    linear-gradient(var(--paper-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-major) 1px, transparent 1px),
+    linear-gradient(var(--paper-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-minor) 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
 }
 
@@ -57,6 +59,8 @@ h2 { font-size: 32px; line-height: 1.2; }
 .site-nav ul { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding: 0; list-style: none; }
 .site-nav ul a { display: block; color: var(--paper); text-decoration: none; padding: 12px 6px; font-size: 15px; }
 .site-nav ul a:hover, .site-nav ul a[aria-current] { color: #fff; text-decoration: underline; }
+
+.menu-btn { display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border: 1.5px solid rgba(243,247,239,.6); border-radius: 6px; background: transparent; color: var(--paper); font: inherit; font-size: 15px; cursor: pointer; }
 
 main {
   max-width: 1040px;
@@ -201,6 +205,10 @@ html.cover-open, html.cover-open body { overflow: hidden; }
   body::before { left: 16px; }
   main { padding: 32px 20px 64px 32px; }
   .site-nav { padding: 8px 20px; }
+  .menu-btn { display: inline-flex; }
+  .site-nav ul { display: none; width: 100%; flex-direction: column; gap: 0; padding-bottom: 8px; }
+  .site-nav.open ul { display: flex; }
+  .site-nav ul a { padding: 12px 4px; border-top: 1px solid rgba(243,247,239,.15); font-size: 17px; }
   .toc .desc { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
