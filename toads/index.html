@@ -74,18 +74,108 @@
         <div><span>Pressure</span><strong id="pressure_hpa">----<small> hPa</small></strong><em>BME280</em></div>
         <div><span>Soil moisture</span><strong id="soil_moisture_pct">--<small> %</small></strong><em>capacitive probe</em></div>
       </div>
-      <button type="button" class="btn" aria-expanded="true" aria-controls="log"
-        onclick="const o = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !o); this.textContent = o ? 'Show log' : 'Hide log'; document.getElementById('log').hidden = o;">Hide log</button>
-      <div class="log-wrap" id="log">
-        <table class="log">
-          <thead><tr><th>Time</th><th>Soil °C</th><th>Air °C</th><th>RH %</th><th>hPa</th><th>Moisture %</th></tr></thead>
-          <tbody id="log-rows">
-            <tr><td>--:--</td><td>--.-</td><td>--.-</td><td>--</td><td>----</td><td>--</td></tr>
-          </tbody>
-        </table>
+      <p class="hand red" id="feed-status">connecting to the tank...</p>
+      <button type="button" class="btn" id="graph-btn" aria-expanded="false" aria-controls="graphs">Show graphs</button>
+      <div class="graphs" id="graphs" hidden>
+        <div class="range" role="group" aria-label="Time range">
+          <button type="button" class="btn" data-range="24h" aria-pressed="true">24 h</button>
+          <button type="button" class="btn" data-range="7d" aria-pressed="false">7 days</button>
+          <button type="button" class="btn" data-range="30d" aria-pressed="false">30 days</button>
+        </div>
+        <div class="charts">
+          <figure><figcaption>Temperature <small>°C</small></figcaption><div class="plot"><canvas id="c-temp"></canvas></div></figure>
+          <figure><figcaption>Humidity <small>%</small></figcaption><div class="plot"><canvas id="c-rh"></canvas></div></figure>
+          <figure><figcaption>Soil moisture <small>%</small></figcaption><div class="plot"><canvas id="c-moist"></canvas></div></figure>
+          <figure><figcaption>Pressure <small>hPa</small></figcaption><div class="plot"><canvas id="c-press"></canvas></div></figure>
+        </div>
       </div>
-      <p class="hand red">values shown as dashes until the live feed is connected</p>
     </section>
+
+    <script>
+      // Live readings from the toads Worker (/api/readings), which queries InfluxDB at home.
+      const API = 'https://toads.willballentine.com/api/readings';
+      const INK = '#1E2A3F', RED = '#C23B32', PENCIL = '#4F5B56', GRID = 'rgba(120, 170, 115, .35)';
+      const fmtTime = (t, opts) => new Date(t).toLocaleString('en-US', { timeZone: 'America/Los_Angeles', ...opts });
+      const getData = range => fetch(`${API}?range=${range}`).then(r => r.ok ? r.json() : Promise.reject(r.status));
+      const unit = { soil_temp_c: ' °C', air_temp_c: ' °C', humidity_pct: ' %', pressure_hpa: ' hPa', soil_moisture_pct: ' %' };
+      const dp = { soil_temp_c: 1, air_temp_c: 1, humidity_pct: 0, pressure_hpa: 0, soil_moisture_pct: 0 };
+
+      function showLatest(l) {
+        const status = document.getElementById('feed-status');
+        if (!l) { status.textContent = 'no readings in the last 2 hours; the station may be offline'; return; }
+        for (const k in unit) document.getElementById(k).innerHTML = (l[k] == null ? '--' : l[k].toFixed(dp[k])) + `<small>${unit[k]}</small>`;
+        document.getElementById('last-time').textContent = fmtTime(l.time, { hour: 'numeric', minute: '2-digit' }) + ' PT';
+        const mins = Math.round((Date.now() - l.time) / 60000);
+        status.textContent = mins > 15 ? `last reading ${mins} min ago; the station may be offline` : '';
+      }
+      const refresh = () => getData('24h').then(d => showLatest(d.latest))
+        .catch(() => document.getElementById('feed-status').textContent = 'live feed unavailable right now (the home server may be down)');
+      refresh(); setInterval(refresh, 60000);
+
+      // Graphs: Chart.js is only downloaded the first time the panel is opened.
+      const graphBtn = document.getElementById('graph-btn'), graphs = document.getElementById('graphs');
+      let charts, range = '24h';
+      graphBtn.onclick = async () => {
+        const open = graphBtn.getAttribute('aria-expanded') !== 'true';
+        graphBtn.setAttribute('aria-expanded', open); graphBtn.textContent = open ? 'Hide graphs' : 'Show graphs'; graphs.hidden = !open;
+        if (open && !charts) {
+          await new Promise((ok, fail) => document.head.append(Object.assign(document.createElement('script'),
+            { src: 'https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js', onload: ok, onerror: fail })));
+          charts = makeCharts(); draw();
+        }
+      };
+      graphs.querySelectorAll('[data-range]').forEach(b => b.onclick = () => {
+        range = b.dataset.range;
+        graphs.querySelectorAll('[data-range]').forEach(x => x.setAttribute('aria-pressed', x === b));
+        draw();
+      });
+
+      function makeCharts() {
+        Object.assign(Chart.defaults, { color: PENCIL, maintainAspectRatio: false, animation: false });
+        Chart.defaults.font.family = "'IBM Plex Mono', monospace";
+        Chart.defaults.font.size = 12;
+        const line = (label, color, dash = []) => ({ label, data: [], borderColor: color, backgroundColor: color, borderWidth: 2, borderDash: dash, pointRadius: 0, pointHoverRadius: 4, spanGaps: false });
+        const make = (id, sets, d) => new Chart(document.getElementById(id), {
+          type: 'line',
+          data: { datasets: sets },
+          options: {
+            parsing: false, normalized: true,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: { display: sets.length > 1, align: 'end', labels: { boxWidth: 24, boxHeight: 2 } },
+              tooltip: { backgroundColor: INK, callbacks: {
+                title: i => fmtTime(i[0].parsed.x, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }),
+                label: i => ` ${i.dataset.label}: ${i.parsed.y.toFixed(d)}` } },
+            },
+            scales: {
+              x: { type: 'linear', grid: { color: GRID }, ticks: { maxTicksLimit: 6, maxRotation: 0,
+                callback: v => fmtTime(v, range === '24h' ? { hour: 'numeric' } : { month: 'short', day: 'numeric' }) } },
+              y: { grid: { color: GRID }, ticks: { maxTicksLimit: 5 } },
+            },
+          },
+        });
+        return {
+          temp: make('c-temp', [line('Soil', INK), line('Air', RED, [6, 4])], 1),
+          rh: make('c-rh', [line('Humidity', INK)], 0),
+          moist: make('c-moist', [line('Soil moisture', INK)], 0),
+          press: make('c-press', [line('Pressure', INK)], 0),
+        };
+      }
+
+      async function draw() {
+        try {
+          const s = (await getData(range)).series;
+          const pts = k => s.time.map((t, i) => ({ x: t, y: s[k][i] }));
+          const now = Date.now(), span = { '24h': 864e5, '7d': 6048e5, '30d': 2592e6 }[range];
+          [[charts.temp, ['soil_temp_c', 'air_temp_c']], [charts.rh, ['humidity_pct']], [charts.moist, ['soil_moisture_pct']], [charts.press, ['pressure_hpa']]]
+            .forEach(([c, keys]) => {
+              keys.forEach((k, i) => c.data.datasets[i].data = pts(k));
+              Object.assign(c.options.scales.x, { min: now - span, max: now });
+              c.update();
+            });
+        } catch { document.getElementById('feed-status').textContent = 'could not load graph data right now'; }
+      }
+    </script>
 
     <section id="station">
       <h2>How the weather station works</h2>
@@ -96,7 +186,7 @@
         <li><div><strong>InfluxDB</strong><span>storage</span></div></li>
         <li><div><strong>This page</strong><span>via Cloudflare</span></div></li>
       </ol>
-      <p style="max-width: 680px;">An ESP32 reads three sensors every 5 minutes (DS18B20 in the soil, a capacitive moisture probe, and a BME280 for air temperature, humidity and pressure) and publishes the readings over MQTT to a home server.</p>
+      <p style="max-width: 680px;">An ESP32 reads three sensors every 5 minutes (DS18B20 in the soil, a capacitive moisture probe, and a BME280 for air temperature, humidity and pressure) and publishes the readings over MQTT to a home server. A small Cloudflare Worker queries the database and serves the latest readings to this page.</p>
     </section>
 
     <footer class="site-footer">

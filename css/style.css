@@ -186,10 +186,18 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .readings em { font-family: var(--hand); font-size: 20px; font-style: normal; color: var(--cover); }
 
 .btn { align-self: flex-start; min-height: 44px; padding: 0 16px; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); font: inherit; font-size: 15px; cursor: pointer; }
-.log-wrap { overflow-x: auto; border: 1.5px solid var(--ink); background: rgba(243, 247, 239, .92); }
-.log { width: 100%; min-width: 620px; border-collapse: collapse; font-family: var(--mono); font-size: 14px; }
-.log th { text-align: left; font-weight: 500; padding: 10px 14px; border-bottom: 2px solid var(--ink); }
-.log td { padding: 8px 14px; border-bottom: 1px solid var(--grid-major); }
+#feed-status:empty { display: none; }
+.graphs { display: flex; flex-direction: column; gap: 16px; }
+.graphs[hidden] { display: none; }
+.range { display: flex; flex-wrap: wrap; gap: 8px; }
+.range .btn { min-height: 36px; font-family: var(--mono); font-size: 13px; }
+.range .btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+.charts figure { margin: 0; padding: 12px 14px 8px; border: 1.5px solid var(--ink); background: #fff; display: flex; flex-direction: column; gap: 4px; }
+.charts figcaption { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--pencil); }
+.charts figcaption small { text-transform: none; letter-spacing: 0; }
+.charts .plot { position: relative; height: 200px; }
+@media (max-width: 700px) { .charts { grid-template-columns: 1fr; } }
 
 /* pipeline diagram */
 .pipeline { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0; padding: 0; list-style: none; }
