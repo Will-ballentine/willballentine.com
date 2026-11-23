@@ -14,7 +14,7 @@ export default {
     const range = url.searchParams.get('range') in RANGES ? url.searchParams.get('range') : '24h';
     const key = new Request(`${url.origin}/api/readings?range=${range}`);
     const hit = await caches.default.match(key);
-    if (hit) return hit;
+    if (hit) return fresh(hit);
 
     const base = start => `from(bucket: "${env.INFLUX_BUCKET}")
       |> range(start: -${start})
@@ -32,12 +32,16 @@ export default {
       const body = { latest: l ? { time: Date.parse(l._time), ...Object.fromEntries(FIELDS.map(f => [f, num(l[f])])) } : null, series };
       const res = Response.json(body, { headers: { 'Cache-Control': 'public, max-age=60', 'Access-Control-Allow-Origin': '*' } });
       ctx.waitUntil(caches.default.put(key, res.clone()));
-      return res;
+      return fresh(res);
     } catch (e) {
       return Response.json({ error: e.message }, { status: 502, headers: { 'Access-Control-Allow-Origin': '*' } });
     }
   },
 };
+
+// Responses from the Cloudflare cache come back with the zone's 4-hour browser TTL;
+// tell browsers not to reuse the data, so every page refresh asks again (the edge cache still absorbs the load).
+const fresh = r => { const x = new Response(r.body, r); x.headers.set('Cache-Control', 'no-store'); return x; };
 
 const num = v => (v === undefined || v === '' ? null : Number(v));
 

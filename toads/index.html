@@ -96,7 +96,7 @@
       const API = 'https://toads.willballentine.com/api/readings';
       const INK = '#1E2A3F', RED = '#C23B32', PENCIL = '#4F5B56', GRID = 'rgba(120, 170, 115, .35)';
       const fmtTime = (t, opts) => new Date(t).toLocaleString('en-US', { timeZone: 'America/Los_Angeles', ...opts });
-      const getData = range => fetch(`${API}?range=${range}`).then(r => r.ok ? r.json() : Promise.reject(r.status));
+      const getData = range => fetch(`${API}?range=${range}`, { cache: 'no-store' }).then(r => r.ok ? r.json() : Promise.reject(r.status));
       const unit = { soil_temp_c: ' °C', air_temp_c: ' °C', humidity_pct: ' %', pressure_hpa: ' hPa', soil_moisture_pct: ' %' };
       const dp = { soil_temp_c: 1, air_temp_c: 1, humidity_pct: 0, pressure_hpa: 0, soil_moisture_pct: 0 };
 
