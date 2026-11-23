@@ -46,7 +46,7 @@ async function flux(env, query) {
   const res = await fetch(`${env.INFLUX_URL}/api/v2/query?org=${encodeURIComponent(env.INFLUX_ORG)}`, {
     method: 'POST',
     headers: {
-      Authorization: `Token ${env.INFLUX_TOKEN}`,
+      Authorization: `Token ${(env.INFLUX_TOKEN ?? '').trim()}`,  // trim: a pasted secret can carry a stray space or newline
       'Content-Type': 'application/json',
       Accept: 'application/csv',
       // Cloudflare Access service token (only sent if set)
@@ -54,7 +54,10 @@ async function flux(env, query) {
     },
     body: JSON.stringify({ query, dialect: { header: true, annotations: [] } }),
   });
-  if (!res.ok) throw new Error(`InfluxDB ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  if (!res.ok) {
+    const t = (env.INFLUX_TOKEN ?? '').trim();  // describe the token without revealing it
+    throw new Error(`InfluxDB ${res.status}: ${(await res.text()).slice(0, 200)} [INFLUX_TOKEN ${t ? `${t.length} chars, ends ...${t.slice(-4)}` : 'missing'}]`);
+  }
   const lines = (await res.text()).split(/\r?\n/).filter(Boolean);
   const header = lines[0]?.split(',') ?? [];
   return lines.slice(1).filter(l => l !== lines[0]).map(l => Object.fromEntries(l.split(',').map((v, i) => [header[i], v])));
