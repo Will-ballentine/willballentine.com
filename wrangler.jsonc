@@ -3,6 +3,15 @@
   "name": "toads",
   // which version of Cloudflare's runtime to use; any recent date works
   "compatibility_date": "2026-11-01",
+  // the Worker script: answers /api/readings, hands every other request to the static files
+  "main": "worker/toads.js",
   // serve the files in dist/ as a static site
-  "assets": { "directory": "./dist" }
+  "assets": { "directory": "./dist", "binding": "ASSETS" },
+  // InfluxDB connection (not secret). INFLUX_TOKEN and the optional CF_ACCESS_CLIENT_ID /
+  // CF_ACCESS_CLIENT_SECRET are set as Secrets in the Cloudflare dashboard, never in this file.
+  "vars": {
+    "INFLUX_URL": "https://influx.willballentine.com",
+    "INFLUX_ORG": "home",
+    "INFLUX_BUCKET": "toadtank"
+  }
 }
