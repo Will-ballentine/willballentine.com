@@ -134,7 +134,7 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .toc a:hover .title { color: var(--red); }
 
 /* dated entries */
-.entries { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.entries { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
 .entry { background: rgba(243, 247, 239, .92); border: 1.5px solid var(--ink); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 .entry header { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: var(--pencil); }
 .entry h3 { font-size: 21px; }
@@ -253,3 +253,28 @@ html.cover-open, html.cover-open body { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .taped, .cover { transition: none; }
 }
+
+/* projects dropdown */
+.has-sub { position: relative; }
+.site-nav summary { list-style: none; cursor: pointer; color: var(--paper); padding: 12px 6px; font-size: 15px; }
+.site-nav summary::-webkit-details-marker { display: none; }
+.site-nav summary::after { content: " ▾"; }
+.site-nav summary:hover { color: #fff; text-decoration: underline; }
+.has-sub ul { position: absolute; top: 100%; left: 0; z-index: 10; flex-direction: column; gap: 0; min-width: 150px; padding: 4px 10px; background: var(--cover); box-shadow: 0 8px 18px rgba(0,0,0,.2); }
+@media (max-width: 700px) {
+  .site-nav summary { padding: 12px 4px; border-top: 1px solid rgba(243,247,239,.15); font-size: 17px; }
+  .has-sub ul { position: static; box-shadow: none; padding: 0 0 0 20px; }
+}
+
+/* footer buttons */
+.site-footer .links { align-items: center; gap: 12px; }
+.site-footer .links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--cover); color: var(--paper); text-decoration: none; }
+.site-footer .links a:hover { background: #24492f; color: #fff; }
+
+/* publications view toggle */
+.view-toggle { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--pencil); }
+.view-toggle button { position: relative; width: 48px; height: 26px; padding: 0; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); cursor: pointer; }
+.view-toggle button::after { content: ""; position: absolute; top: 3px; left: 3px; width: 17px; height: 17px; border-radius: 50%; background: var(--ink); transition: transform .2s ease; }
+.view-toggle button[aria-checked="true"] { background: var(--cover); border-color: var(--cover); }
+.view-toggle button[aria-checked="true"]::after { transform: translateX(22px); background: var(--paper); }
+.pubs[hidden], .entries[hidden] { display: none; }

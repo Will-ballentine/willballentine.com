@@ -19,7 +19,7 @@
     <ul id="nav-links">
       <li><a href="/#research">Research</a></li>
       <li><a href="/tools/">Tools</a></li>
-      <li><a href="https://toads.willballentine.com/">Toad Tank</a></li>
+      <li class="has-sub"><details><summary>Projects</summary><ul><li><a href="https://toads.willballentine.com/">Toad Tank</a></li></ul></details></li>
       <li><a href="/publications/" aria-current="page">Publications</a></li>
       <li><a href="/assets/Will_Ballentine_CV.pdf">CV</a></li>
     </ul>
@@ -28,6 +28,7 @@
     const nav = document.querySelector('.site-nav'), menuBtn = nav.querySelector('.menu-btn');
     const setMenu = open => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); };
     menuBtn.onclick = () => setMenu(!nav.classList.contains('open'));
+    document.addEventListener('click', e => { const d = nav.querySelector('details'); if (d && !d.contains(e.target)) d.open = false; });
     nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   </script>
 
@@ -40,6 +41,11 @@
 
     <section id="publications">
       <div class="section-title"><h1>Publications</h1></div>
+      <div class="view-toggle">
+        <span>Citations</span>
+        <button type="button" role="switch" aria-checked="false" aria-label="Show as cards" id="view-switch"></button>
+        <span>Cards</span>
+      </div>
       <ol class="pubs">
         <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Chan K.Y.K., Wong E., Wong J.Y., Koehl M.A.R. Hydrodynamic effects of spines on zooplankton: how horns and tails alter flow and forces on barnacle nauplii. <em>Journal of Experimental Biology</em> 229: jeb252318. <a href="https://doi.org/10.1242/jeb.252318">doi:10.1242/jeb.252318</a></span></li>
         <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Dohner S.M., Dorgan K.M., Penko A. Microalgae and meiofauna induce heterogeneous biostabilization in marine sediments. <em>Journal of Geophysical Research: Oceans</em> 131: e2025JC023521. <a href="https://doi.org/10.1029/2025JC023521">doi:10.1029/2025JC023521</a></span></li>
@@ -53,10 +59,61 @@
         <li><span class="year">2020</span><span>Dorgan K.M., Parker R., <strong>Ballentine W.M.</strong>, Berke S.K., Kiskaddon E., Gadeken K., Weldin E., Clemo W.C., Caffray T., Budai S., Bell S. Investigating the sublethal effects of oil exposure on infaunal behavior, bioturbation, and sediment oxygen consumption. <em>Marine Ecology Progress Series</em> 635: 9-24. <a href="https://doi.org/10.3354/meps13215">doi:10.3354/meps13215</a></span></li>
         <li><span class="year">2017</span><span>Lee K.M., Ballard M.S., McNeese A.R., Dorgan K.M., <strong>Ballentine W.M.</strong>, Venegas G.R., Wilson P.S. Comparison between infauna abundance and seabed geoacoustic properties. <em>Proceedings of Meetings on Acoustics</em> 31: 005002. (not peer reviewed)</span></li>
       </ol>
+      <div class="entries" id="pub-cards" hidden>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.1242/jeb.252318">Hydrodynamic effects of spines on zooplankton: how horns and tails alter flow and forces on barnacle nauplii</a></h3>
+          <p>Ballentine et al. 2026</p>
+        </article>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.1029/2025JC023521">Microalgae and meiofauna induce heterogeneous biostabilization in marine sediments</a></h3>
+          <p>Ballentine et al. 2026</p>
+        </article>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.1007/s12526-025-01615-z">High meiofaunal diversity in the Azores revealed through DNA metabarcoding</a></h3>
+          <p>Leasi et al. 2026</p>
+        </article>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.3389/frym.2025.1472123">Life among the sand grains</a></h3>
+          <p>Ballentine et al. 2025</p>
+        </article>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.1093/iob/obae016">The Meioflume: a new system for observing the interstitial behavior of meiofauna</a></h3>
+          <p>Ballentine &amp; Dorgan 2024</p>
+        </article>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.1086/724580">Locomotory palp function in interstitial annelids</a></h3>
+          <p>Ballentine &amp; Dorgan 2023</p>
+        </article>
+        <article class="entry">
+          <h3>Meiozores 2019: Exploring the marine meiofauna of the Azores</h3>
+          <p>Jörger et al. 2021</p>
+        </article>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.7717/peerj.11862">Transport of biodeposits and benthic footprint around an oyster farm, Damariscotta Estuary, Maine</a></h3>
+          <p>Gadeken et al. 2021</p>
+        </article>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.1121/10.0000558">Impacts of simulated infaunal activities on acoustic wave propagation in marine sediments</a></h3>
+          <p>Dorgan et al. 2020</p>
+        </article>
+        <article class="entry linked">
+          <h3><a href="https://doi.org/10.3354/meps13215">Investigating the sublethal effects of oil exposure on infaunal behavior, bioturbation, and sediment oxygen consumption</a></h3>
+          <p>Dorgan et al. 2020</p>
+        </article>
+        <article class="entry">
+          <h3>Comparison between infauna abundance and seabed geoacoustic properties</h3>
+          <p>Lee et al. 2017</p>
+        </article>
+      </div>
     </section>
+    <script>
+      const sw = document.getElementById('view-switch'), list = document.querySelector('.pubs'), cards = document.getElementById('pub-cards');
+      const show = c => { sw.setAttribute('aria-checked', c); list.hidden = c; cards.hidden = !c; try { localStorage.setItem('pubView', c ? 'cards' : 'citations'); } catch (e) {} };
+      try { if (localStorage.getItem('pubView') === 'cards') show(true); } catch (e) {}
+      sw.onclick = () => show(sw.getAttribute('aria-checked') !== 'true');
+    </script>
 
     <footer class="site-footer">
-      <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
       <div class="links">
         <a href="/">Home</a>
         <a href="/assets/Will_Ballentine_CV.pdf">CV (PDF)</a>
