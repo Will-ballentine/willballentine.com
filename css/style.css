@@ -146,6 +146,7 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .entry.linked h3 a { text-decoration: none; }
 .entry.linked h3 a::after { content: ""; position: absolute; inset: 0; } /* whole card clickable */
 .entry p.more { font-family: var(--hand); font-size: 22px; color: var(--red); margin-top: auto; }
+.all-link { margin-top: 16px; font-weight: 600; }
 
 /* research subpages */
 .taped.linked figcaption a { text-decoration: none; }
