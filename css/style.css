@@ -278,3 +278,8 @@ html.cover-open, html.cover-open body { overflow: hidden; }
 .view-toggle button[aria-checked="true"] { background: var(--cover); border-color: var(--cover); }
 .view-toggle button[aria-checked="true"]::after { transform: translateX(22px); background: var(--paper); }
 .pubs[hidden], .entries[hidden] { display: none; }
+
+/* drawings */
+.diagram { margin: 0; }
+.diagram img { width: 100%; }
+.entry .card-img { width: 100%; }
