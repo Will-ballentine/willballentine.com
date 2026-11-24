@@ -47,7 +47,7 @@
     <ul id="nav-links">
       <li><a href="#research">Research</a></li>
       <li><a href="tools/">Tools</a></li>
-      <li><a href="https://toads.willballentine.com/">Toad Tank</a></li>
+      <li class="has-sub"><details><summary>Projects</summary><ul><li><a href="https://toads.willballentine.com/">Toad Tank</a></li></ul></details></li>
       <li><a href="publications/">Publications</a></li>
       <li><a href="assets/Will_Ballentine_CV.pdf">CV</a></li>
     </ul>
@@ -56,6 +56,7 @@
     const nav = document.querySelector('.site-nav'), menuBtn = nav.querySelector('.menu-btn');
     const setMenu = open => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); };
     menuBtn.onclick = () => setMenu(!nav.classList.contains('open'));
+    document.addEventListener('click', e => { const d = nav.querySelector('details'); if (d && !d.contains(e.target)) d.open = false; });
     nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   </script>
 
@@ -100,6 +101,16 @@
       </div>
     </section>
 
+    <section id="projects">
+      <div class="section-title"><h2>Projects</h2></div>
+      <div class="entries">
+        <article class="entry linked">
+          <h3><a href="https://toads.willballentine.com/">Toad Tank</a></h3>
+          <p>Follow along in the lives of my two pet toads</p>
+        </article>
+      </div>
+    </section>
+
     <section id="publications">
       <div class="section-title"><h2>Selected Publications</h2></div>
       <div class="entries">
@@ -120,7 +131,6 @@
     </section>
 
     <footer class="site-footer" id="cv">
-      <div class="sig"><span class="muted">Recorded by:</span><strong>W. Ballentine</strong></div>
       <div class="links">
         <a href="/?cover">Close notebook</a>
         <a href="assets/Will_Ballentine_CV.pdf">CV (PDF)</a>
