@@ -35,12 +35,12 @@
     <div class="page-header">
       <div><span>Project</span><strong>The Toad Tank</strong></div>
       <div><span>Date</span><strong>2026-11-21</strong></div>
-      <div><span>Page No.</span><strong>004</strong></div>
+      <div><span>Page No.</span><strong>005</strong></div>
     </div>
 
     <header style="display: flex; flex-direction: column; gap: 8px;">
       <h1>The Toad Tank</h1>
-      <p class="hand red" style="font-size: 26px;">live from Seattle, updated every 5 min</p>
+      <p class="hand" style="font-size: 26px;">live from Seattle, updated every 5 min</p>
     </header>
 
     <section id="toads">
@@ -61,7 +61,6 @@
     <section id="enclosure">
       <h2>The enclosure</h2>
       <figure class="diagram"><img src="images/enclosure.webp" width="1600" height="683" alt="Labeled drawing of the toad tank: the weather station on the left wall, pothos plants, two flower pot hides, and a water dish on soil with leaf litter"></figure>
-      <p class="placeholder">[Tank size, substrate, plants, hides, lighting.]</p>
     </section>
 
     <section id="conditions">
@@ -76,7 +75,7 @@
         <div><span>Pressure</span><strong id="pressure_hpa">----<small> hPa</small></strong><em>BME280</em></div>
         <div><span>Soil moisture</span><strong id="soil_moisture_pct">--<small> %</small></strong><em>capacitive probe</em></div>
       </div>
-      <p class="hand red" id="feed-status">connecting to the tank...</p>
+      <p class="hand" id="feed-status">connecting to the tank...</p>
       <button type="button" class="btn" id="graph-btn" aria-expanded="false" aria-controls="graphs">Show graphs</button>
       <div class="graphs" id="graphs" hidden>
         <div class="range" role="group" aria-label="Time range">

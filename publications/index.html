@@ -36,17 +36,17 @@
     <div class="page-header">
       <div><span>Project</span><strong>Publications</strong></div>
       <div><span>Date</span><strong>2026-11-24</strong></div>
-      <div><span>Page No.</span><strong>005</strong></div>
+      <div><span>Page No.</span><strong>006</strong></div>
     </div>
 
     <section id="publications">
       <div class="section-title"><h1>Publications</h1></div>
       <div class="view-toggle">
-        <span>Citations</span>
-        <button type="button" role="switch" aria-checked="false" aria-label="Show as cards" id="view-switch"></button>
-        <span>Cards</span>
+        <span>Title</span>
+        <button type="button" role="switch" aria-checked="false" aria-label="Show as citations" id="view-switch"></button>
+        <span>Citation</span>
       </div>
-      <ol class="pubs">
+      <ol class="pubs" hidden>
         <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Chan K.Y.K., Wong E., Wong J.Y., Koehl M.A.R. Hydrodynamic effects of spines on zooplankton: how horns and tails alter flow and forces on barnacle nauplii. <em>Journal of Experimental Biology</em> 229: jeb252318. <a href="https://doi.org/10.1242/jeb.252318">doi:10.1242/jeb.252318</a></span></li>
         <li><span class="year">2026</span><span><strong>Ballentine W.M.</strong>, Dohner S.M., Dorgan K.M., Penko A. Microalgae and meiofauna induce heterogeneous biostabilization in marine sediments. <em>Journal of Geophysical Research: Oceans</em> 131: e2025JC023521. <a href="https://doi.org/10.1029/2025JC023521">doi:10.1029/2025JC023521</a></span></li>
         <li><span class="year">2026</span><span>Leasi F., et al. (incl. <strong>Ballentine W.M.</strong>). High meiofaunal diversity in the Azores revealed through DNA metabarcoding. <em>Marine Biodiversity</em> 56(1): 6. <a href="https://doi.org/10.1007/s12526-025-01615-z">doi:10.1007/s12526-025-01615-z</a></span></li>
@@ -59,7 +59,7 @@
         <li><span class="year">2020</span><span>Dorgan K.M., Parker R., <strong>Ballentine W.M.</strong>, Berke S.K., Kiskaddon E., Gadeken K., Weldin E., Clemo W.C., Caffray T., Budai S., Bell S. Investigating the sublethal effects of oil exposure on infaunal behavior, bioturbation, and sediment oxygen consumption. <em>Marine Ecology Progress Series</em> 635: 9-24. <a href="https://doi.org/10.3354/meps13215">doi:10.3354/meps13215</a></span></li>
         <li><span class="year">2017</span><span>Lee K.M., Ballard M.S., McNeese A.R., Dorgan K.M., <strong>Ballentine W.M.</strong>, Venegas G.R., Wilson P.S. Comparison between infauna abundance and seabed geoacoustic properties. <em>Proceedings of Meetings on Acoustics</em> 31: 005002. (not peer reviewed)</span></li>
       </ol>
-      <div class="entries" id="pub-cards" hidden>
+      <div class="entries" id="pub-cards">
         <article class="entry linked">
           <h3><a href="https://doi.org/10.1242/jeb.252318">Hydrodynamic effects of spines on zooplankton: how horns and tails alter flow and forces on barnacle nauplii</a></h3>
           <p>Ballentine et al. 2026</p>
@@ -108,8 +108,8 @@
     </section>
     <script>
       const sw = document.getElementById('view-switch'), list = document.querySelector('.pubs'), cards = document.getElementById('pub-cards');
-      const show = c => { sw.setAttribute('aria-checked', c); list.hidden = c; cards.hidden = !c; try { localStorage.setItem('pubView', c ? 'cards' : 'citations'); } catch (e) {} };
-      try { if (localStorage.getItem('pubView') === 'cards') show(true); } catch (e) {}
+      const show = c => { sw.setAttribute('aria-checked', c); list.hidden = !c; cards.hidden = c; try { localStorage.setItem('pubView', c ? 'citation' : 'title'); } catch (e) {} };
+      try { if (localStorage.getItem('pubView') === 'citation') show(true); } catch (e) {}
       sw.onclick = () => show(sw.getAttribute('aria-checked') !== 'true');
     </script>
 
