@@ -283,3 +283,10 @@ html.cover-open, html.cover-open body { overflow: hidden; }
 .diagram { margin: 0; }
 .diagram img { width: 100%; }
 .entry .card-img { width: 100%; height: 140px; object-fit: contain; }
+
+/* card link arrows: → on this site, ↗ leaves the site */
+.entry.linked::before { content: "→"; position: absolute; top: 12px; right: 14px; font-size: 20px; line-height: 1; color: var(--ink); }
+.entry.linked.ext::before { content: "↗"; }
+.entry.linked:hover::before { color: var(--red); }
+.entry.linked h3 { padding-right: 18px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
