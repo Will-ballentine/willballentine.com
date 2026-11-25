@@ -68,6 +68,11 @@
         <h2>Live conditions</h2>
         <span class="mono muted" style="font-size: 13px;">station1 · last reading <span id="last-time">--:--</span></span>
       </div>
+      <div class="view-toggle" style="margin-bottom: 14px;">
+        <span>°C</span>
+        <button type="button" role="switch" aria-checked="false" aria-label="Show temperatures in Fahrenheit" id="unit-switch"></button>
+        <span>°F</span>
+      </div>
       <div class="readings">
         <div><span>Soil temp</span><strong id="soil_temp_c">--.-<small> °C</small></strong><em>DS18B20</em></div>
         <div><span>Air temp</span><strong id="air_temp_c">--.-<small> °C</small></strong><em>BME280</em></div>
@@ -84,7 +89,7 @@
           <button type="button" class="btn" data-range="30d" aria-pressed="false">30 days</button>
         </div>
         <div class="charts">
-          <figure><figcaption>Temperature <small>°C</small></figcaption><div class="plot"><canvas id="c-temp"></canvas></div></figure>
+          <figure><figcaption>Temperature <small id="temp-unit">°C</small></figcaption><div class="plot"><canvas id="c-temp"></canvas></div></figure>
           <figure><figcaption>Humidity <small>%</small></figcaption><div class="plot"><canvas id="c-rh"></canvas></div></figure>
           <figure><figcaption>Soil moisture <small>%</small></figcaption><div class="plot"><canvas id="c-moist"></canvas></div></figure>
           <figure><figcaption>Pressure <small>hPa</small></figcaption><div class="plot"><canvas id="c-press"></canvas></div></figure>
@@ -99,12 +104,28 @@
       const fmtTime = (t, opts) => new Date(t).toLocaleString('en-US', { timeZone: 'America/Los_Angeles', ...opts });
       const getData = range => fetch(`${API}?range=${range}`, { cache: 'no-store' }).then(r => r.ok ? r.json() : Promise.reject(r.status));
       const unit = { soil_temp_c: ' °C', air_temp_c: ' °C', humidity_pct: ' %', pressure_hpa: ' hPa', soil_moisture_pct: ' %' };
+      // Data arrive in °C; convert for display only.
+      let useF = false, lastLatest, lastSeries;
+      try { useF = localStorage.getItem('tempUnit') === 'F'; } catch (e) {}
+      const isTemp = k => k.endsWith('_temp_c');
+      const cv = (k, v) => v == null || !useF || !isTemp(k) ? v : v * 9 / 5 + 32;
+      const u = k => isTemp(k) ? (useF ? ' °F' : ' °C') : unit[k];
+      const unitSw = document.getElementById('unit-switch');
+      const setUnit = f => {
+        useF = f; unitSw.setAttribute('aria-checked', f);
+        document.getElementById('temp-unit').textContent = f ? '°F' : '°C';
+        try { localStorage.setItem('tempUnit', f ? 'F' : 'C'); } catch (e) {}
+        if (lastLatest) showLatest(lastLatest);
+        if (charts && lastSeries) plot(lastSeries);
+      };
+      unitSw.onclick = () => setUnit(!useF);
       const dp = { soil_temp_c: 1, air_temp_c: 1, humidity_pct: 0, pressure_hpa: 0, soil_moisture_pct: 0 };
 
       function showLatest(l) {
         const status = document.getElementById('feed-status');
+        lastLatest = l;
         if (!l) { status.textContent = 'no readings in the last 2 hours; the station may be offline'; return; }
-        for (const k in unit) document.getElementById(k).innerHTML = (l[k] == null ? '--' : l[k].toFixed(dp[k])) + `<small>${unit[k]}</small>`;
+        for (const k in unit) document.getElementById(k).innerHTML = (l[k] == null ? '--' : cv(k, l[k]).toFixed(dp[k])) + `<small>${u(k)}</small>`;
         document.getElementById('last-time').textContent = fmtTime(l.time, { hour: 'numeric', minute: '2-digit' }) + ' PT';
         const mins = Math.round((Date.now() - l.time) / 60000);
         status.textContent = mins > 15 ? `last reading ${mins} min ago; the station may be offline` : '';
@@ -116,6 +137,7 @@
       // Graphs: Chart.js is only downloaded the first time the panel is opened.
       const graphBtn = document.getElementById('graph-btn'), graphs = document.getElementById('graphs');
       let charts, range = '24h';
+      setUnit(useF);
       graphBtn.onclick = async () => {
         const open = graphBtn.getAttribute('aria-expanded') !== 'true';
         graphBtn.setAttribute('aria-expanded', open); graphBtn.textContent = open ? 'Hide graphs' : 'Show graphs'; graphs.hidden = !open;
@@ -165,8 +187,12 @@
 
       async function draw() {
         try {
-          const s = (await getData(range)).series;
-          const pts = k => s.time.map((t, i) => ({ x: t, y: s[k][i] }));
+          plot(lastSeries = (await getData(range)).series);
+        } catch { document.getElementById('feed-status').textContent = 'could not load graph data right now'; }
+      }
+
+      function plot(s) {
+          const pts = k => s.time.map((t, i) => ({ x: t, y: cv(k, s[k][i]) }));
           const now = Date.now(), span = { '24h': 864e5, '7d': 6048e5, '30d': 2592e6 }[range];
           [[charts.temp, ['soil_temp_c', 'air_temp_c']], [charts.rh, ['humidity_pct']], [charts.moist, ['soil_moisture_pct']], [charts.press, ['pressure_hpa']]]
             .forEach(([c, keys]) => {
@@ -174,7 +200,6 @@
               Object.assign(c.options.scales.x, { min: now - span, max: now });
               c.update();
             });
-        } catch { document.getElementById('feed-status').textContent = 'could not load graph data right now'; }
       }
     </script>
 
