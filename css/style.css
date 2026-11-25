@@ -282,4 +282,4 @@ html.cover-open, html.cover-open body { overflow: hidden; }
 /* drawings */
 .diagram { margin: 0; }
 .diagram img { width: 100%; }
-.entry .card-img { width: 100%; }
+.entry .card-img { width: 100%; height: 140px; object-fit: contain; }
