@@ -243,7 +243,7 @@ html.cover-open, html.cover-open body { overflow: hidden; }
 @media (max-width: 700px) {
   body::before { left: 16px; }
   main { padding: 32px 20px 64px 32px; }
-  .site-nav { padding: 8px 20px; }
+  .site-nav { padding: 8px 20px; position: sticky; top: 0; z-index: 20; }
   .menu-btn { display: inline-flex; }
   .site-nav ul { display: none; width: 100%; flex-direction: column; gap: 0; padding-bottom: 8px; }
   .site-nav.open ul { display: flex; }
